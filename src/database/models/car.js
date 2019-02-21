@@ -16,7 +16,7 @@ const car = seq.define(
     },
     owner: {
       type: Sequelize.STRING,
-      allowNull: false,
+      allowNull: true,
       unique: true,
     },
     last_log_km: {
