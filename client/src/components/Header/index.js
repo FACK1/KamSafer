@@ -48,7 +48,7 @@ const styles = {
     width: "4rem"
   }
 };
-const Header = ({ classes, location, history,logout }) => {
+const Header = ({ classes, location, history, logout }) => {
   const { pathname } = location;
   if (pathname !== "/login") {
     return (
@@ -69,13 +69,25 @@ const Header = ({ classes, location, history,logout }) => {
           )}
           <div className={classes.container}>
             <div>
-              <img className={classes.logo1} alt="logo" src={KS_logo} />
+              <img
+                className={classes.logo1}
+                onClick={() => {
+                  history.push("cars");
+                  return false;
+                }}
+                alt="logo"
+                src={KS_logo}
+              />
             </div>
             <Typography variant="h2" className={classes.grow}>
               KamSafer
             </Typography>
           </div>
-          <Button variant="outlined" className={classes.button} onClick={()=>logout(history)}>
+          <Button
+            variant="outlined"
+            className={classes.button}
+            onClick={() => logout(history)}
+          >
             Log out
           </Button>
         </Toolbar>

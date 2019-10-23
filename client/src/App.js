@@ -19,7 +19,7 @@ class App extends Component {
     super(props);
     this.state = {
       carId: null,
-      purpose: "Personal",
+      purpose: "Business",
       driver_name: null,
       start_km: null,
       end_km: null,
@@ -61,10 +61,12 @@ class App extends Component {
   };
   getlastkm = () => {
     const url = "/getstartkm";
-    getData(url)
-      .then(result => {
-        this.setState({ start_km: result[0].last_log_km });
+    getData(url).then(result => {
+      this.setState({
+        start_km: result[0].last_log_km,
+        driver_name: result[0].driver_name
       });
+    });
   };
 
   handleChange = name => event => {
@@ -122,7 +124,13 @@ class App extends Component {
           <Route
             exact
             path="/reports"
-            render={props => <Reports {...props} />}
+            render={props => (
+              <Reports
+                {...props}
+                model_color={this.state.model_color}
+                car_no={this.state.car_no}
+              />
+            )}
           />
           <Route exact path="/login" component={Login} />
           <Route exact path="/home" component={Home} />

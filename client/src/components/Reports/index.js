@@ -100,7 +100,12 @@ class Reports extends React.Component {
         return response.blob();
       })
       .then(blob => {
-        download(blob, "logs.xlsx");
+        download(
+          blob,
+          `${this.state.month}/${this.state.year} ${this.props.model_color} ${
+            this.props.car_no
+          }.xlsx`
+        );
       })
       .catch(error => {
         alert(`Error Try Again Later ! Refresh The Page`);
