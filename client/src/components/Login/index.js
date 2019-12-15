@@ -7,6 +7,7 @@ import FormControl from "@material-ui/core/FormControl";
 import Input from "@material-ui/core/Input";
 import InputLabel from "@material-ui/core/InputLabel";
 import Paper from "@material-ui/core/Paper";
+import Typography from "@material-ui/core/Typography";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import KS_logo from "./KS_logo.png";
 import Mercy from "./Mercy .png";
@@ -61,6 +62,12 @@ const styles = theme => ({
     width: "70px",
     height: "70px"
   },
+  grow: {
+    color: "#A11010",
+    fontSize: "2rem",
+    fontWeight: "bold",
+    marginTop:"10px"
+  },
 
   Mercy: {
     width: "180px",
@@ -71,6 +78,15 @@ const styles = theme => ({
 });
 
 class Login extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      username: "",
+      password: "",
+      failed: false
+    };
+  }
   componentDidMount() {
     const { history } = this.props;
     authentication()
@@ -82,16 +98,10 @@ class Login extends Component {
       .catch(error => {
         console.log("An error has occurred please try again");
       });
+
   }
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      username: "",
-      password: "",
-      failed: false
-    };
-  }
+
   handleInputChange = ({ target: { name, value } }) => {
     this.setState({
       [name]: value
@@ -127,13 +137,16 @@ class Login extends Component {
             <Avatar className={classes.avatar}>
               <img src={KS_logo} className={classes.KSLogo} />
             </Avatar>
-
+            <Typography variant="h2" className={classes.grow}>
+              KamSafer
+            </Typography>
             <form className={classes.form} onSubmit={this.handleSubmit}>
               <FormControl margin="normal" required fullWidth>
                 <InputLabel htmlFor="username">Username</InputLabel>
                 <Input
                   id="username"
                   name="username"
+                  required="true"
                   value={this.state.username}
                   onChange={this.handleInputChange}
                 />
@@ -144,7 +157,7 @@ class Login extends Component {
                   id="password"
                   name="password"
                   type="Password"
-                  name="password"
+                  required="true"
                   value={this.state.password}
                   onChange={this.handleInputChange}
                 />
@@ -164,7 +177,7 @@ class Login extends Component {
           </Paper>
         </main>
       </MuiThemeProvider>
-    );
+  );
   }
 }
 Login.propTypes = {
