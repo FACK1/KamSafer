@@ -29,7 +29,7 @@
     "cookie-parser": "^1.4.4",
     "env2": "^2.2.2",
     "exceljs": "^1.7.0",
-    "express": "^4.16.4",
+    "express": "^4.17.3",
     "jsonwebtoken": "^8.4.0",
     "material-ui-icons": "^1.0.0-beta.36",
     "nodemon": "^1.18.10",
